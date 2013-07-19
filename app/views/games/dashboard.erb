@@ -1,0 +1,63 @@
+
+<div class="wall">
+  <div class="game_list_headding" >Challenges</div>
+  <div class="game_list">
+    <% @sample_games.each do |g| %>
+      <div class="game_item">
+        <%= render partial: 'game', locals: {game: g} %>
+        <div class="clearfix"></div>
+        <div class="action_area">
+          <%= link_to "accept challenge", join_game_path(g), method: :put, class: 'button action pull-left' %>
+        </div>
+      </div>
+    <% end %>
+    <div class="clearfix"/></div>
+  </div>
+</div>
+
+<div class="wall">
+  <div class="game_list_headding" >Ongoing challenges</div>
+  <div class="game_list">
+    <% @current_games.each do |g| %>
+      <div class="game_item">
+        <div class="game_info">
+          <div class="pull-left">
+            <%= render partial: 'users/user', locals: {user: g.user } %>
+          </div>
+          <div class="versus pull-left">
+            Vs
+          </div>
+          <div class="pull-left">
+            <%= render partial: 'users/user', locals: {user: g.co_player } %>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="action_area">
+          <%= link_to 'play', g, class: 'button action pull-left'%>
+        </div>
+      </div>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+<div class="wall">
+  <div class="game_list_headding" >My bets</div>
+  <%= link_to 'New Game', new_game_path %>
+  <div class="game_list">
+    <% @my_challenges.each do |g| %>
+      <div class="game_item">
+        <%= render partial: 'game', locals: {game: g} %>
+        <div class="action_area">
+          <%= link_to 'play', g, class: 'button action pull-left' %>
+          <% if !g.co_player && current_user %>
+            <%= link_to 'Edit', edit_game_path(g), class: 'button  action pull-left' %>
+            <%= link_to 'retreat', g, method: :delete , class: 'button action pull-left'%>
+          <% end %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    <% end %>
+    <div class="clearfix"/></div>
+  </div>
+</div>

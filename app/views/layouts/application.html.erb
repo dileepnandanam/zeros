@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zero</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="navbar">
+<% if !current_user.new_record? %>
+	<div class="navbar_item"> 
+		<div class="avathar" >
+			<%= image_tag(current_user.avathar) %> 
+		</div>
+	</div>
+	<div class="navbar_item text-center"> <%= current_user.login %> </div>
+	<div class="navbar_item money text-center"> $<%= current_user.money.to_i %> </div>
+	<%= link_to(sessions_path, method: :delete, class: 'navbar_item text-center button') do %>
+		logout
+	<% end %>
+<% else %>
+	<%= link_to("/auth/facebook", id: "sign_in", class: 'navbar_item text-center button') do %>
+		Sign in with Facebook
+	<% end %>
+<% end %>
+<div class="clearfix"></div>
+</div>
+
+<div class="game">
+<%= yield %>
+</div>
+</body>
+</html>

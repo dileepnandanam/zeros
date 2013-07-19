@@ -1,0 +1,8 @@
+<h1>Join</h1>
+<%= form_for(@user) do |f| %>
+  <%= f.label :login %>
+  <%= f.text_field :login %>
+  <%= f.label :password %>
+  <%= f.text_field :password %>
+  <%= f.submit %>
+<% end %>

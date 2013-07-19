@@ -1,0 +1,96 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+.hidden {
+  display: none;
+}
+.pull_left {
+  float: left;
+}
+body {
+  background-color: #ff99cc !important;
+}
+img{
+  display: block;
+}
+.user {
+  background-color: #ccffff;
+}
+.text-center {
+  text-align: center;
+  line-height: 50px;
+  height: 50px;
+  padding: 0 6px 0 6px;
+}
+.money {
+  background-color: #ffffff;
+  width: 60px;
+}
+.game_list_headding {
+  font-size: 150%
+}
+.versus {
+  font-size: 200%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  padding: 0 5px 0 5px;
+}
+div.game {
+  overflow: auto;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #ff00cc;
+}
+div.wall {
+  margin: 10px;
+  padding: 10px;
+  background-color: #ffcccc;
+}
+div.game_list {
+}
+
+div.navbar {
+  width: 100%;
+  background-color: #ffffff;
+}
+.navbar_item {
+  float: left;
+  background-color:  #ffffff;
+  margin: 2px;
+  height: 50px;
+}
+div.clearfix {
+  clear: both;
+}
+.pull-left {
+  float: left;
+}
+a.button:link, a.button:visited, a.button:hover, a.button:active {
+  color: inherit;
+  background-color: inherit;
+  text-decoration: none;
+}
+a.button.action {
+  padding: 2px;
+  background-color: #996633;
+  color: #ffffff;
+  border-radius: 4px;
+  margin: 6px 6px 0 0;
+  padding: 0 6px 0 6px;
+}
+a.button.navbar_item {
+  background-color: #0000ff;
+  color: #ffffff;
+  border-radius: 10px;
+}

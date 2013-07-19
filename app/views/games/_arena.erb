@@ -1,0 +1,18 @@
+<div class="game_status">
+  <% if @game.begun? %>
+    <div class="rounds">
+      <span class="hidden my_round" > Your turn </span>
+      <span class="hidden opponent_round" > <%= current_user.opponent_in(@game).login %>'s turn </span>
+    </div>
+  <% end %>
+</div>
+
+<div class="game_box" style="width:<%= 25 * @game.width + 5 %>px; height:<%= 25 * @game.height + 5 %>px;" data-url="<%= play_game_path(@game) %>" data-sync="<%= game_path(@game) %>" >
+  <% (0..(@game.height - 1)).each do |i| %>
+    <% (0..(@game.width - 1)).each do |j| %>   
+      <%= render partial: 'block', locals: {block: @game.block_at(i,j), i: i, j: j} %>
+    <% end -%>
+    <div class="clearfix"></div>
+  <% end -%>
+  <div class="clearfix"></div>
+</div>

@@ -1,0 +1,17 @@
+<div class="wall">
+  <div class="game_list">
+    <div class="game_list_headding" > Games </div>
+    <% @games.each do |g| %>
+      <div class="game_item">
+        <%= render partial: 'game', locals: {game: g} %>
+        <div class="clearfix"></div>
+        <div class="action_area">
+          <%= link_to "view", g %>
+          <%= link_to "accept challenge", join_game_path(g), method: :put %>
+        </div>
+      </div>
+    <% end %>
+    <div class="clearfix"/>
+  </div>
+</div>
+<%= link_to "back", current_user.new_record? ? games_path : games_dashboard_path %>

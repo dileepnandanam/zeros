@@ -1,0 +1,36 @@
+
+<div class="wall">
+  <div class="game_list_headding" >search Challenges</div>
+  <div class="search">
+    <%= form_tag games_search_path, method: :get, class: 'button action' do %>
+      <label for="from">from</label>
+      <input type="number" id="from" name="from" />
+      <label for="to">to</label>
+      <input type="number" id="to" name="to" />
+      <input type="submit" value="search" class='button action'>
+    <% end %>
+  </div>
+</div>
+
+<div class="wall">
+  <div class="game_list_headding" >Challenges</div>
+  <div class="game_list">
+    <% @sample_games.each do |g| %>
+      <div class="game_item">
+        <%= render partial: 'game', locals: {game: g} %>
+        <div class="clearfix"></div>
+        <div class="action_area">
+          <% if !current_user.new_record? && current_user != g.user %>
+            <%= link_to "accept challenge", join_game_path(g), method: :put, class: 'button action' %>
+          <% else %>
+            <%= link_to 'view', g, class: 'button action' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="clearfix"/></div>
+  </div>
+</div>
+<% if !current_user.new_record? %>
+  <%= link_to "my games", games_dashboard_path, class: 'button action'%>
+<% end %>

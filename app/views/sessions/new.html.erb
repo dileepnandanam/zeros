@@ -1,0 +1,14 @@
+<h1>Session#new</h1>
+<div>
+<div class="well">
+<%= form_for(:session, url: sessions_path) do |f| %>
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+    <%= f.submit("sign in") %>
+<% end %>
+</div>
+<%= link_to 'back' , root_path %>
+</div>
+

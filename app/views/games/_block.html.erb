@@ -1,0 +1,44 @@
+<div class="block" id="<%= block.id %>">
+<div class="zero">
+
+</div>
+
+<div class="up <%= block.up ? "marked" : "" %>" id="<%= "#{block.id}_up" %>">
+
+</div>
+
+<% if j == (@game.width - 1) %>
+  <div class="zero">
+
+  </div>
+<% end -%>
+
+<div class="left <%= block.left ? "marked" : "" %>" id="<%= "#{block.id}_left" %>">
+
+</div>
+
+<div class="mid">
+<%= block.owner.login[0] if block.owner %>
+</div>
+<% if j == (@game.width - 1) %>
+  <div class="right <%= block.right ? "marked" : "" %>" id="<%= "#{block.id}_right" %>">
+
+  </div>
+<% end -%>
+
+<% if i == (@game.height - 1) %>
+  <div class="zero" style="clear: both;">
+
+  </div>
+
+  <div class="down <%= block.down ? "marked" : "" %>" id="<%= "#{block.id}_down" %>">
+
+  </div>
+
+  <% if j == (@game.width - 1) %>
+    <div class="zero">
+
+    </div>
+  <% end -%>
+<% end %>
+</div>
