@@ -52,9 +52,7 @@ div.down {
   width: 20px;
   height: 5px;
 }
-div.game_item {
-  float:left;
-  margin: 10px;
-  padding: 10px;
-  background-color: #ccffcc;
+
+.won, .lost {
+  font-size: 150%;
 }

@@ -4,8 +4,8 @@ class GamesController < ApplicationController
   def dashboard
     @sample_games = Game.find :all, limit: 5, conditions: ['co_player_id is null and user_id <> ?', current_user.id]
     @games = current_user.accepted_challenges + current_user.games 
-    @current_games = @games.find_all{|g| g.co_player_id.present? }
-    @my_challenges = @games - @current_games
+    @current_games = @games.find_all{|g| g.co_player_id.present? && !g.finished?}
+    @my_challenges = @games.find_all{|g| g.co_player_id.blank?}
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: {current_games: @current_games, my_challenges: @my_challenges} }
@@ -53,7 +53,7 @@ class GamesController < ApplicationController
     winner = @game.who_won
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: {lost: @game.winner && @game.winner != current_user, won: winner == current_user, my_round: @game.last_player != current_user, blocks:@game.blocks.map{|b| {id: b.id, owner: b.owner ? b.owner.login : nil , left: b.left, right: b.right, up: b.up, down: b.down}} }}
+      format.json { render json: {money: current_user.money.to_i, lost: @game.winner && @game.winner != current_user, won: winner == current_user, my_round: @game.last_player != current_user, blocks:@game.blocks.map{|b| {id: b.id, owner: b.owner ? b.owner.login : nil , left: b.left, right: b.right, up: b.up, down: b.down}} }}
     end
   end
 

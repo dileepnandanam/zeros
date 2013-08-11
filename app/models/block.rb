@@ -69,10 +69,10 @@ class Block < ActiveRecord::Base
       markable =  boundaries[marks.index(nil)]
       send :mark, markable
       send :mark, user
-      return send "#{markable}_block".to_sym
+      return (send "#{markable}_block".to_sym) || true
     elsif marks.compact.count == 4
       send :mark, user
-      return false
+      return true
     end
   end
 

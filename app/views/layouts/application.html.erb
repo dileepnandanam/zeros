@@ -16,12 +16,12 @@
 		</div>
 	</div>
 	<div class="navbar_item text-center"> <%= current_user.login %> </div>
-	<div class="navbar_item money text-center"> $<%= current_user.money.to_i %> </div>
-	<%= link_to(sessions_path, method: :delete, class: 'navbar_item text-center button') do %>
+	<div class="navbar_item money text-center"> $<span class="user_money"><%= current_user.money.to_i %> </div> </span>
+	<%= link_to(sessions_path, method: :delete, class: 'navbar_item text-center button pull-right') do %>
 		logout
 	<% end %>
 <% else %>
-	<%= link_to("/auth/facebook", id: "sign_in", class: 'navbar_item text-center button') do %>
+	<%= link_to("/auth/facebook", id: "sign_in", class: 'navbar_item text-center button pull-right') do %>
 		Sign in with Facebook
 	<% end %>
 <% end %>

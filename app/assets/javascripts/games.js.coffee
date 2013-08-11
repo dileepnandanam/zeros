@@ -30,7 +30,8 @@ $ ->
       url: url + ".json"
       success: (r)->
         mark(r.blocks)
-
+        if($('.user_money').html() != r.money)
+          $('.user_money').html(r.money)
         if(r.won)
           $('.my_round').hide()
           $('.opponent_round').hide()

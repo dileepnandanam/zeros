@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809195233) do
+ActiveRecord::Schema.define(:version => 20130812115948) do
 
   create_table "blocks", :force => true do |t|
     t.integer  "x"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130809195233) do
     t.integer  "winner_id"
     t.integer  "user_score"
     t.integer  "co_player_score"
+    t.boolean  "finished"
   end
 
   create_table "users", :force => true do |t|

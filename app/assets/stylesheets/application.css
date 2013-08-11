@@ -18,18 +18,20 @@
   float: left;
 }
 body {
-  background-color: #ff99cc !important;
+  background-color: #fafaff !important;
 }
 img{
   display: block;
 }
-.user {
-  background-color: #ccffff;
-}
-.text-center {
+.navbar .text-center {
   text-align: center;
   line-height: 50px;
   height: 50px;
+  padding: 0 6px 0 6px;
+}
+.text-center {
+  text-align: center;
+  line-height: 400%;
   padding: 0 6px 0 6px;
 }
 .money {
@@ -50,12 +52,12 @@ div.game {
   overflow: auto;
   width: 100%;
   margin-top: 10px;
-  background-color: #ff00cc;
 }
 div.wall {
   margin: 10px;
   padding: 10px;
-  background-color: #ffcccc;
+  background-color: #f0faff;
+  border: 1px solid #f0f0e0;
 }
 div.game_list {
 }
@@ -76,6 +78,9 @@ div.clearfix {
 .pull-left {
   float: left;
 }
+.pull-right {
+  float: right;
+}
 a.button:link, a.button:visited, a.button:hover, a.button:active {
   color: inherit;
   background-color: inherit;
@@ -93,4 +98,13 @@ a.button.navbar_item {
   background-color: #0000ff;
   color: #ffffff;
   border-radius: 10px;
+}
+div.game_item {
+  float:left;
+  margin: 10px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #f0f0e0;}
+.game_item .user {
+  margin-top: 2px;
 }

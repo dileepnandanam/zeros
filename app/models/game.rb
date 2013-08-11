@@ -1,10 +1,10 @@
 class Game < ActiveRecord::Base
-  attr_accessible :co_player_id, :height, :last_player_id, :user_id, :width, :bet, :co_player_score, :user_score
+  attr_accessible :co_player_id, :height, :last_player_id, :user_id, :width, :bet, :co_player_score, :user_score, :finished
   belongs_to :user
   belongs_to :co_player, class_name: 'User'
   belongs_to :winner, class_name: 'User'
   belongs_to :last_player, class_name: 'User'
-  has_many :blocks
+  has_many :blocks, :order => 'id ASC'
   after_create :create_blocks
 
   def begun?
@@ -22,16 +22,16 @@ class Game < ActiveRecord::Base
 
   def mark_available(user, block)
     @marked = []
-    @checklist = block.connected_blocks
+    @checklist = [block] + block.connected_blocks
     while @checklist.count > 0 do
       b = @checklist.pop
       next_block = b.mark_if_available(user)
       if next_block
         @marked.push b
-        @checklist.push next_block
+        @checklist.push next_block if next_block.class.name == "Block"
       end
     end
-    return(@marked + 1)
+    return @marked
   end
 
   def checklist(block, boundary)
@@ -50,9 +50,13 @@ class Game < ActiveRecord::Base
   def who_won
     return winner if winner
     if (width * height) == co_player_score.to_i + user_score.to_i
-      winner = co_player_score.to_i > user_score.to_i ? co_player : user
-      self.winner_id = winner.id
-      winner.gain_prize(self)
+      if co_player_score != user_score
+        winner = co_player_score.to_i > user_score.to_i ? co_player : user
+        self.winner_id = winner.id
+        winner.gain_prize(self)
+      end
+      self.finished = true
+      self.save
       return winner
     end
   end

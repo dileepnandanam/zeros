@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :login, :money, :uid, :access_token, :avathar
   attr_accessor :password
-  before_save :hash_password
+  before_create :hash_password
   has_many :games
   has_many :challenges, class_name: "Game", foreign_key: :co_player_id
   has_many :pending_games, class_name: "Game", foreign_key: :last_player_id
@@ -28,9 +28,9 @@ class User < ActiveRecord::Base
 
   def gain_prize(game)
     partner = opponent_in(game)
-    self.money = self.money.to_i + game.bet
+    self.money = self.money.to_i + game.bet.to_i
     self.save
-    partner.money = partner.money.to_i - game.bet
+    partner.money = partner.money.to_i - game.bet.to_i
     partner.save
   end
 

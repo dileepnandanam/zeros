@@ -43,7 +43,7 @@
 
 <div class="wall">
   <div class="game_list_headding" >My bets</div>
-  <%= link_to 'New Game', new_game_path %>
+  <%= link_to '+', new_game_path, class: "button action text-center"%>
   <div class="game_list">
     <% @my_challenges.each do |g| %>
       <div class="game_item">
