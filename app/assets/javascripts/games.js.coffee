@@ -11,6 +11,7 @@ $ ->
 
   $('.left, .right, .up, .down').on 'click', ()->
     boundary_element = $(@)
+    $(boundary_element).addClass('marked')
     params = $(@).attr('id').split('_')
     url = $(@).closest('.game_box').data('url')
     $.ajax
@@ -22,6 +23,8 @@ $ ->
       success: (r)->
         $(boundary_element).addClass('marked')
         mark(r)
+      error: (r)->
+        $(boundary_element).removeClass('marked')
 
   updateGame = ()->
     url = $('.game_box').data('sync')
