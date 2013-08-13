@@ -23,4 +23,7 @@
 
 
 
-<%= link_to 'Back', games_dashboard_path %>
+<%= link_to 'Back', games_dashboard_path, class: 'button action pull-left' %>
+<% if !current_user.new_record? && @game.user != current_user && @game.co_player.nil? %>
+	<%= link_to "accept challenge", join_game_path(@game), method: :put, class: 'button action pull-left' %>
+<% end %>
