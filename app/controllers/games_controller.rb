@@ -33,17 +33,15 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find(params[:id])
-    @game.co_player_id = current_user.id
     respond_to do |format|
-      if @game.save
+      if @game.join(current_user)
         format.html { redirect_to @game, notice: 'play.' }
         format.json { render json: @game, status: :created, location: @game }
       else
-        format.html { redirect_to games_path, notice: 'play.' }
+        format.html { redirect_to games_dashboard_path, notice: 'play.' }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # GET /games/1

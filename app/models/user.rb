@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     partner.save
   end
 
+  def logged_in?
+    !self.new_record?
+  end
+
   protected
     def hash_password
       self.remember_token = SecureRandom.base64

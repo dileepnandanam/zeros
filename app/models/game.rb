@@ -6,7 +6,10 @@ class Game < ActiveRecord::Base
   belongs_to :last_player, class_name: 'User'
   has_many :blocks, :order => 'id ASC'
   after_create :create_blocks
-
+  validates_presence_of :user_id
+  validates_presence_of :width
+  validates_presence_of :height
+  validates_presence_of :bet
   def begun?
     user && co_player
   end
@@ -47,9 +50,18 @@ class Game < ActiveRecord::Base
     self.save
   end
 
+  def join(u)
+    if u.logged_in?
+      self.co_player_id = u.id
+      self.save
+    else
+      false
+    end
+  end
+
   def who_won
     return winner if winner
-    if (width * height) == co_player_score.to_i + user_score.to_i
+    if (width * height) <= co_player_score.to_i + user_score.to_i
       if co_player_score != user_score
         winner = co_player_score.to_i > user_score.to_i ? co_player : user
         self.winner_id = winner.id
