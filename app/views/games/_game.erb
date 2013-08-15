@@ -1,6 +1,6 @@
 <div class="game_info">
   <div class="bet">
-    <%= "Challenge of $#{game.bet.to_i} from" %>
+    <%= "$#{game.bet.to_i} #{t("challenge_from")}" %>
   </div>
   <%= render partial: 'users/user', locals: {user: game.user} %>
   <div class="clearfix"></div>

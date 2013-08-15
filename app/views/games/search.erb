@@ -1,13 +1,13 @@
 <div class="wall">
   <div class="game_list">
-    <div class="game_list_headding" > Games </div>
+    <div class="game_list_headding" ><%= t("matched_games") %> </div>
     <% @games.each do |g| %>
       <div class="game_item">
         <%= render partial: 'game', locals: {game: g} %>
         <div class="clearfix"></div>
         <div class="action_area">
-          <%= link_to "view", g %>
-          <%= link_to "accept challenge", join_game_path(g), method: :put %>
+          <%= link_to t("view"), g, class: "button action text-center" %>
+          <%= link_to t("accept_challenge"), join_game_path(g), method: :put, class: "button action text-center" %>
         </div>
       </div>
     <% end %>

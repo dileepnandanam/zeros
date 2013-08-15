@@ -1,13 +1,13 @@
 
 <div class="wall">
-  <div class="game_list_headding" >Challenges</div>
+  <div class="game_list_headding" ><%= t("challenges") %></div>
   <div class="game_list">
     <% @sample_games.each do |g| %>
       <div class="game_item">
         <%= render partial: 'game', locals: {game: g} %>
         <div class="clearfix"></div>
         <div class="action_area">
-          <%= link_to "accept challenge", join_game_path(g), method: :put, class: 'button action pull-left' %>
+          <%= link_to t("accept_challenge"), join_game_path(g), method: :put, class: 'button action pull-left' %>
         </div>
       </div>
     <% end %>
@@ -16,7 +16,7 @@
 </div>
 
 <div class="wall">
-  <div class="game_list_headding" >Ongoing challenges</div>
+  <div class="game_list_headding" ><%= t("ongoing_challenges") %></div>
   <div class="game_list">
     <% @current_games.each do |g| %>
       <div class="game_item">
@@ -33,7 +33,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="action_area">
-          <%= link_to 'play', g, class: 'button action pull-left'%>
+          <%= link_to t('play'), g, class: 'button action pull-left'%>
         </div>
       </div>
     <% end %>
@@ -42,17 +42,17 @@
 </div>
 
 <div class="wall">
-  <div class="game_list_headding" >My bets</div>
+  <div class="game_list_headding" ><%= t("my_games") %></div>
   <%= link_to '+', new_game_path, class: "button action text-center"%>
   <div class="game_list">
     <% @my_challenges.each do |g| %>
       <div class="game_item">
         <%= render partial: 'game', locals: {game: g} %>
         <div class="action_area">
-          <%= link_to 'play', g, class: 'button action pull-left' %>
+          <%= link_to t('play'), g, class: 'button action pull-left' %>
           <% if !g.co_player && current_user %>
             <%= link_to 'Edit', edit_game_path(g), class: 'button  action pull-left' %>
-            <%= link_to 'retreat', g, method: :delete , class: 'button action pull-left'%>
+            <%= link_to t('retreat'), g, method: :delete , class: 'button action pull-left'%>
           <% end %>
           <div class="clearfix"></div>
         </div>
