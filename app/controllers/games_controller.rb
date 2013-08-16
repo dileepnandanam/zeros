@@ -23,7 +23,7 @@ class GamesController < ApplicationController
   def search
     @games = Game.find(
       :all,
-      conditions: ['co_player_id is null and winner_id is null and bet between ? and ?', params[:from].to_i, params[:to].to_i]
+      conditions: ['co_player_id is null and user_id <> ? and bet between ? and ?', current_user.id, params[:from].to_i, params[:to].to_i]
     )
     respond_to do |format|
       format.html # index.html.erb
