@@ -1,6 +1,6 @@
 
 OmniAuth.config.logger = Rails.logger
-
+FB_APP = YAML.load_file("#{Rails.root}/config/facebook.yml")[Rails.env]
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, "209241602526454", "550268096a078a253f0b3c303cac5eae"
+  provider :facebook, FB_APP["app_id"], FB_APP["app_secret"]
 end
