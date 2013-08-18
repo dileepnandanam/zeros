@@ -3,15 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 div.game_box {
-  background: #ffff88;
   margin: 50px;
+}
+.ruled-page {
+  background: url('paper-ruled.jpg');
 }
 div.zero {
   background: #000000;
   float: left;
-  width: 5px;
-  height: 5px;
-  border-radius: 3px 3px 3px 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px 4px 4px 4px;
 }
 div.block {
   float: left;
@@ -20,7 +22,7 @@ div.row {
   clear: both;
 }
 .left, .right, .up, .down {
-  background: #aaaaaa;
+  background: #ffffff;
 }
 .marked {
   background: #000000;
@@ -30,30 +32,30 @@ div.row {
 }
 div.left {
   float: left;
-  width: 5px;
-  height: 20px;
+  width: 8px;
+  height: 30px;
   clear:both;
 }
 div.right {
   float: left;
-  width: 5px;
-  height: 20px;
+  width: 8px;
+  height: 30px;
 }
 div.mid {
   text-align: center;
   float: left;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 div.up {
   float: left;
-  width: 20px;
-  height: 5px;
+  width: 30px;
+  height: 8px;
 }
 div.down {
   float: left;
-  width: 20px;
-  height: 5px;
+  width: 30px;
+  height: 8px;
 }
 
 .won, .lost {

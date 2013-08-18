@@ -7,7 +7,7 @@
   <% end %>
 </div>
 
-<div class="game_box" style="width:<%= 25 * @game.width + 5 %>px; height:<%= 25 * @game.height + 5 %>px;" data-url="<%= play_game_path(@game) %>" data-sync="<%= game_path(@game) %>" >
+<div class="game_box" style="width:<%= 38 * @game.width + 8 %>px; height:<%= 38 * @game.height + 8 %>px;" data-url="<%= play_game_path(@game) %>" data-sync="<%= game_path(@game) %>" >
   <% (0..(@game.height - 1)).each do |i| %>
     <% (0..(@game.width - 1)).each do |j| %>   
       <%= render partial: 'block', locals: {block: @game.block_at(i,j), i: i, j: j} %>
