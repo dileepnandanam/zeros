@@ -31,10 +31,11 @@
     <% end %>
     <div class="clearfix"/></div>
   </div>
+  <% if !current_user.new_record? %>
+    <%= link_to t("my_games"), games_dashboard_path, class: 'button action'%>
+  <% end %>
 </div>
-<% if !current_user.new_record? %>
-  <%= link_to t("my_games"), games_dashboard_path, class: 'button action'%>
-<% end %>
+
 
 <div class="wall">
   <div class="game_list">
