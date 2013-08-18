@@ -14,6 +14,7 @@ class GamesController < ApplicationController
 
   def index
     @sample_games = Game.find :all, limit: 5, conditions:{ co_player_id: nil }
+    @finished_games = Game.find :all, limit: 5, conditions:"winner_id not null"
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sample_games }

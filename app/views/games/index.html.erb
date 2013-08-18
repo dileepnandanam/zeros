@@ -12,6 +12,7 @@
   </div>
 </div>
 <% end %>
+
 <div class="wall">
   <div class="game_list_headding" ><%= t("challenges") %></div>
   <div class="game_list">
@@ -34,3 +35,26 @@
 <% if !current_user.new_record? %>
   <%= link_to t("my_games"), games_dashboard_path, class: 'button action'%>
 <% end %>
+
+<div class="wall">
+  <div class="game_list">
+    <% @finished_games.each do |g| %>
+      <div class="game_item">
+        <div class="game_info">
+          <div class="pull-left">
+            <%= render partial: 'users/user', locals: {user: g.winner } %>
+          </div>
+          <div class="text-center pull-left"> Won $<%= g.bet %> from </div>
+          <div class="pull-left">
+            <%= render partial: 'users/user', locals: {user: g.winner.opponent_in(g) } %>
+          </div>
+          <div class="clearifx"></div>
+          <div class="action_area">
+            <%= link_to t('view'), g, class: 'button action pull-left'%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+</div>
