@@ -7,12 +7,25 @@
 
 
 <div class="result">
-	<div class="won hidden text-center">
-		<%= t("won") %>
-	</div>
-	<div class="lost hidden text-center">
-		<%= t("lost") %>
-	</div>
+	<% if [@game.user, @game.co_player].include? current_user %>
+		<div class="won hidden text-center">
+			<%= t("won") %>
+		</div>
+		<div class="lost hidden text-center">
+			<%= t("lost") %>
+		</div>
+	<% elsif @game.finished %>
+		<% if @game.winner %>
+			<div class="pull-left">
+				<%= render partial: 'users/user', locals: {user: @game.winner } %>
+			</div>
+			<div class="text-center pull-left"> Won $<%= @game.bet %> from </div>
+			<div class="pull-left">
+				<%= render partial: 'users/user', locals: {user: @game.winner.opponent_in(@game) } %>
+			</div>
+		<% end %>
+	<% end %>
+	<div class="clearfix"></div>
 </div>
 
 
@@ -24,5 +37,5 @@
 
 <%= link_to 'Back', games_dashboard_path, class: 'button action pull-left' %>
 <% if !current_user.new_record? && @game.user != current_user && @game.co_player.nil? %>
-	<%= link_to "accept challenge", join_game_path(@game), method: :put, class: 'button action pull-left' %>
+	<%= link_to "join_game", join_game_path(@game), method: :put, class: 'button action pull-left' %>
 <% end %>
