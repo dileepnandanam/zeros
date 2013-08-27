@@ -1,5 +1,5 @@
 module TranslationHelper
   def t(key)
-    Malayalam[key] || (key.sub "_", " ").camelize
+    Malayalam[key] && false || (key.gsub "_", " ").camelize
   end
 end
